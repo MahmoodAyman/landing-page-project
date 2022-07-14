@@ -97,7 +97,14 @@ section {
   color: #fff;
   transition: ease 0.3s all;
 }
-
+.page__header .navbar__toggle span{
+    width:30px;
+    height: 10px;
+    background-color: black;
+}
+.page__header .navbar__toggle{
+    background-color: #000;
+}
 /* Header Styles */
 .page__header {
   background: #fff;

@@ -53,14 +53,18 @@ let navBarItems = document.querySelectorAll("li a");
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("active");
+        if (entry.isIntersecting) {
+          //add class to section
+            entry.target.classList.add("active");
+            //add class to navbar link
         let index = entry.target
           .getAttributeNode("data-nav")
           .value.split(" ")[1];
         navBarItems[index - 1].classList.add("active");
-      } else {
-        entry.target.classList.remove("active");
+        } else {
+            //remove class from the section
+            entry.target.classList.remove("active");
+            //remove class from the navbar link 
         let index = entry.target
           .getAttributeNode("data-nav")
           .value.split(" ")[1];
@@ -68,15 +72,29 @@ const observer = new IntersectionObserver(
       }
     });
   },
-  {
-    threshold: 0.8,
+    {
+      // when 70% of elemen inside the viewport class active added or removed 
+    threshold: 0.7,
   }
 );
+// observe work on one element only so loop 
 sections.forEach((section) => {
   observer.observe(section);
 });
 // Scroll to anchor ID using scrollTO event
 
+navBarItems.forEach((navbarItem) => {
+  navbarItem.addEventListener("click", function (event) {
+    event.preventDefault();
+    const index = navbarItem.getAttributeNode("href").value;
+    let section = document.querySelector(index);
+    console.log(section);
+    window.scrollTo(
+      section.getBoundingClientRect().x,
+      section.getBoundingClientRect().y
+    );
+  });
+});
 /**
  * End Main Functions
  * Begin Events
