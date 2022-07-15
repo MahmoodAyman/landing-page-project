@@ -9,9 +9,6 @@
 */
 
 /* ---- Base Rules ---- */
-* {
-  scroll-behavior: smooth;
-}
 body {
   background: rgb(136, 203, 171);
   background: linear-gradient(
@@ -97,13 +94,16 @@ section {
   color: #fff;
   transition: ease 0.3s all;
 }
-.page__header .navbar__toggle span{
-    width:30px;
-    height: 10px;
-    background-color: black;
+.navbar__toggle div {
+  width: 30px;
+  height: 1px;
+  background-color: white;
+  z-index: 1000;
+  border-radius: 30px;
+  transition: all 0.3s ease-in-out;
 }
-.page__header .navbar__toggle{
-    background-color: #000;
+.navbar__toggle {
+  display: none;
 }
 /* Header Styles */
 .page__header {
@@ -247,5 +247,53 @@ section.your-active-class .landing__container::after {
   }
   to {
     transform: rotate(360deg) translate(-1em) rotate(-360deg);
+  }
+}
+.show {
+  right: 20px !important;
+}
+.activeNav .bar1 {
+  transform: rotate(-60deg) translate(-11px, 8px);
+}
+
+.activeNav .bar2 {
+  opacity: 0;
+}
+
+.activeNav .bar3 {
+  transform: rotate(60deg) translate(-11px, -8px);
+}
+
+/*make navbar responsive*/
+@media screen and (max-width: 560px) {
+  .page__header {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    right: -200px;
+    top: 82px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  #navbar__list {
+    display: flex;
+    flex-direction: column;
+  }
+  .navbar__toggle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 40px;
+    height: 40px;
+    border: 2px solid white;
+    border-radius: 5px;
+    margin: 14px;
+    position: fixed;
+    float: right;
+    top: 0%;
+    padding: 5px;
+    right: 10;
+    z-index: 15;
   }
 }
